@@ -1,0 +1,115 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "autoshare": false,
+    "autoupdate": false,
+    "model": "google/gemini-3.1-pro-preview",
+    "small_model": "ollama/gemma4:e4b",
+    "provider": {
+        "antropic": {
+            "options": {
+                "timeout": 300000,
+                "chunkTimeout": 30000,
+                "setCacheKey": true
+            }
+        },
+        "google": {
+            "options": {
+                "timeout": 300000,
+                "chunkTimeout": 30000,
+                "setCacheKey": true
+            }
+        },
+        "ollama": {
+            "name": "Ollama (Local)",
+            "npm": "@ai-sdk/openai-compatible",
+            "options": {
+                "baseURL": "http://localhost:11434/v1",
+                "timeout": 300000,
+                "chunkTimeout": 30000,
+                "setCacheKey": true
+            },
+            "models": {
+                "gemma4:e4b": {
+                    "name": "Gemma 4 4B",
+                    "tools": true
+                }
+            }
+        }
+    },
+    "agent": {
+        "build": {
+            "model": "ollama/gemma4:e4b",
+            "temperature": 0.3
+        },
+        "plan": {
+            "model": "google/gemini-3.1-pro-preview",
+            "temperature": 0.1,
+            "permission": {
+                "bash": {
+                    "git status": "allow",
+                    "git diff *": "allow",
+                    "git log *": "allow",
+                    "git show *": "allow",
+                    "fd *": "allow",
+                    "cat *": "allow",
+                    "ls *": "allow",
+                    "rg *": "allow",
+                    "tree *": "allow",
+                    "wc *": "allow",
+                    "head *": "allow",
+                    "tail *": "allow",
+                    "*": "deny"
+                }
+            }
+        },
+        "docs": {
+            "model": "ollama/gemma4:e4b",
+            "temperature": 0.3,
+            "permission": {
+                "write": {
+                    "**/*.md": "allow",
+                    "**/*.mdx": "allow",
+                    "*": "deny"
+                }
+            },
+            "description": "Documentation writer - generates and updates markdown docs, READMEs, and guides. Can only write to .md/.mdx files."
+        }
+    },
+    "default_agent": "plan",
+    "mcp": {
+        "Context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp",
+            "enabled": true
+        },
+        "fetch": {
+            "type": "local",
+            "command": ["uvx", "mcp-server-fetch"]
+        },
+        "gh_grep": {
+            "type": "remote",
+            "url": "https://mcp.grep.app",
+            "enabled": true
+        },
+        "thinking": {
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ],
+            "enabled": true
+        }
+    },
+    "permission": {
+        "external_directory": "ask",
+        "bash": {
+            "sudo *": "deny",
+            "rm -rf /": "deny",
+            "rm -rf /*": "deny",
+            "rm -rf ~": "deny",
+            "rm -rf ~/*": "deny",
+            ":(){:|:&};:": "deny"
+        }
+    }
+}
