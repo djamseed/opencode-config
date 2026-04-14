@@ -111,5 +111,6 @@
             "rm -rf ~/*": "deny",
             ":(){:|:&};:": "deny"
         }
-    }
+    },
+    "plugin": ["@tarquinen/opencode-dcp@latest"]
 }
