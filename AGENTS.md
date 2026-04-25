@@ -90,10 +90,28 @@ Models are interchangeable tools. Choose the right tool for the job:
 
 ## Knowledge Files (On-demand)
 
-- `@knowledge/csharp-dotnet-patterns.md`
-- `@knowledge/go-concurrency.md`
-- `@knowledge/zig-build-system.md`
-- `@knowledge/likec4-dsl.md`
+When working in language/framework-specific contexts, **read the relevant knowledge file** to ensure compliance with standards.
+
+| Context | Knowledge File |
+| :--- | :--- |
+| **Go** | `@knowledge/go-concurrency.md` |
+| **C# / .NET** | `@knowledge/csharp-dotnet-patterns.md` |
+| **Zig** | `@knowledge/zig-build-system.md` |
+| **Architecture** | `@knowledge/likec4-dsl.md` |
+| **Git/Version Control** | `@knowledge/git-workflow.md` |
+| **Testing** | `@knowledge/testing-standards.md` |
+
+### Usage
+
+When working on Go code:
+```
+Read @knowledge/go-concurrency.md first to ensure compliance
+```
+
+When working on a new feature with git:
+```
+Read @knowledge/git-workflow.md for commit conventions
+```
 
 ## Preferred Tools
 
